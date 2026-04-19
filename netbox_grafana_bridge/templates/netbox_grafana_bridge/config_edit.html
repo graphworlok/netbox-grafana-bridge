@@ -1,0 +1,47 @@
+{% extends 'base/layout.html' %}
+{% load helpers form_helpers %}
+
+{% block title %}Grafana Bridge — Edit Configuration{% endblock %}
+
+{% block content %}
+<form method="post">
+  {% csrf_token %}
+  <div class="row">
+    <div class="col col-md-8">
+
+      <div class="card">
+        <h5 class="card-header">Bridge Connection</h5>
+        <div class="card-body">
+          {% render_field form.grafana_url %}
+          {% render_field form.bridge_url %}
+          {% render_field form.cache_ttl %}
+        </div>
+      </div>
+
+      <div class="card mt-3">
+        <h5 class="card-header">Dashboard UIDs</h5>
+        <div class="card-body">
+          <p class="text-muted small">
+            Find a dashboard UID in Grafana by opening the dashboard and copying the string between <code>/d/</code> and the next <code>/</code> in the URL.
+          </p>
+          {% render_field form.dashboard_uid_device %}
+          {% render_field form.dashboard_uid_interface %}
+          {% render_field form.dashboard_uid_site %}
+          {% render_field form.dashboard_uid_prefix %}
+          {% render_field form.dashboard_uid_circuit %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col">
+      <button type="submit" class="btn btn-primary">
+        <i class="mdi mdi-content-save"></i> Save
+      </button>
+      <a href="{% url 'plugins:netbox_grafana_bridge:config' %}" class="btn btn-outline-secondary ms-2">Cancel</a>
+    </div>
+  </div>
+</form>
+{% endblock %}

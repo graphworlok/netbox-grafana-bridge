@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "netbox-grafana-bridge"
+version = "0.1.0"
+description = "NetBox plugin to configure and monitor the NetBox-Grafana bridge service"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-django"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["netbox_grafana_bridge*"]
